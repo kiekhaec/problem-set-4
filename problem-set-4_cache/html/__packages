@@ -1,0 +1,14 @@
+base
+jsonlite
+httr
+dplyr
+nihexporter
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+broom
+gganimate
+cowplot
