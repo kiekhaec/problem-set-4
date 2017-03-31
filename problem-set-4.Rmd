@@ -48,7 +48,7 @@ project_io
 
 The `projects` and `project_io` tables have the `r intersect(names(projects), names(project_io))` column in common. Use this column to perform a `left_join` and identify the most expensive project for each institute. Project institutes are in the `projects` table, whereas total project costs are available in the `project_io` table. Note you will have to use the `arrange` and `slice` verbs from `dplyr`.
 
-```{r problem_1, eval=FALSE}
+```{r problem_1}
 
 library("tidyverse")
 projects %>%
@@ -115,14 +115,13 @@ projects %>%
 
 Calculate correlations between `total.cost` and `n.pubs` for each institute. You will need to `join` the `projects` and `project_io` tables to link `institute` with `total.cost` and `n.pubs`. You will then need to use `group_by` and `do` from `dplyr` and `tidy` from `broom` to calculate correlations.
 
-```{r problem_4, eval=FALSE}
+```{r problem_4}
 projects %>% 
   select(project.num, institute) %>%
   left_join(project_io) %>% 
   select(n.pubs, institute, total.cost) %>% 
   group_by(institute) %>% 
   do(tidy(cor(.$total.cost, .$n.pubs)))
-  arrange(desc(total.cost)) 
 ```  
 #Commands below are written by Jay for problem_4.  
 tab %>%
@@ -153,6 +152,7 @@ res <-
   na.omit() %>%
   group_by(institute) %>%
   do(tidy(cor.test(.$total.cost, .$n.pubs)))
+res
   # arrange(desc(total.cost)) 
   
 ```
